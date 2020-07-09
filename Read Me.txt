@@ -1,0 +1,6 @@
+Thanks for purchasing Shipboard SAAS!
+
+We recommend you to read the online docs for more detailed instructions about installation and upgrades
+https://docs.getshipboardsaas.com
+
+For any inquiries please contact me on support@phpify.dev and include your purchase code, and I will try to assist you as soon as possible.
