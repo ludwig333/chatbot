@@ -6,7 +6,7 @@
 
         <template>
             <div class="container mx-auto px-4 sm:px-6 md:px-8 py-4">
-                <div class="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-6">
+                <!-- <div class="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-6">
                     <div class="bg-white overflow-hidden shadow rounded-lg">
                         <div class="px-4 py-5 sm:p-6">
                             <div class="flex items-center">
@@ -142,9 +142,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div class="flex flex-col bg-white rounded-lg shadow">
                         <div class="p-4">
                             <div class="font-semibold">
@@ -180,7 +180,7 @@
                             />
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </template>
     </v-app-default-layout>
@@ -188,7 +188,7 @@
 
 <script>
     import VAppDefaultLayout from '@/views/back/app/layouts/default'
-    import VChartLine from '@/components/chart-line'
+    // import VChartLine from '@/components/chart-line'
 
     export default {
         metaInfo() {
@@ -199,7 +199,7 @@
 
         components: {
             VAppDefaultLayout,
-            VChartLine
+            // VChartLine
         },
 
         mounted() {
@@ -208,84 +208,84 @@
 
         data() {
             return {
-                productiveMonthChart: {
-                    data: {
-                        labels: [
-                            this.$trans('labels.jan'), this.$trans('labels.feb'), this.$trans('labels.mar'), this.$trans('labels.apr'),
-                            this.$trans('labels.may'), this.$trans('labels.jun'), this.$trans('labels.jul'), this.$trans('labels.aug'),
-                            this.$trans('labels.sep'), this.$trans('labels.oct'), this.$trans('labels.nov'), this.$trans('labels.dec')
-                        ],
-                        datasets: [
-                            {
-                                backgroundColor: '#b4c6fc',
-                                borderColor: '#b4c6fc',
-                                pointBackgroundColor: '#fff',
-                                data: this.$page.tasks_by_month
-                            }
-                        ],
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                            display: false
-                        },
-                        scales: {
-                            xAxes: [{
-                                gridLines: {
-                                    display: false
-                                }
-                            }],
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                },
-                                gridLines: {
-                                    display: false,
-                                }
-                            }]
-                        }
-                    }
-                },
-                productiveDayChart: {
-                    data: {
-                        labels: [
-                            this.$trans('labels.sun'), this.$trans('labels.mon'), this.$trans('labels.tue'),
-                            this.$trans('labels.wed'), this.$trans('labels.thu'), this.$trans('labels.fri'),
-                            this.$trans('labels.sat'),
-                        ],
-                        datasets: [
-                            {
-                                backgroundColor: '#b4c6fc',
-                                borderColor: '#b4c6fc',
-                                pointBackgroundColor: '#fff',
-                                data: this.$page.tasks_by_day
-                            }
-                        ],
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                            display: false
-                        },
-                        scales: {
-                            xAxes: [{
-                                gridLines: {
-                                    display: false
-                                }
-                            }],
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                },
-                                gridLines: {
-                                    display: false,
-                                }
-                            }]
-                        }
-                    }
-                }
+            //     productiveMonthChart: {
+            //         data: {
+            //             labels: [
+            //                 this.$trans('labels.jan'), this.$trans('labels.feb'), this.$trans('labels.mar'), this.$trans('labels.apr'),
+            //                 this.$trans('labels.may'), this.$trans('labels.jun'), this.$trans('labels.jul'), this.$trans('labels.aug'),
+            //                 this.$trans('labels.sep'), this.$trans('labels.oct'), this.$trans('labels.nov'), this.$trans('labels.dec')
+            //             ],
+            //             datasets: [
+            //                 {
+            //                     backgroundColor: '#b4c6fc',
+            //                     borderColor: '#b4c6fc',
+            //                     pointBackgroundColor: '#fff',
+            //                     data: this.$page.tasks_by_month
+            //                 }
+            //             ],
+            //         },
+            //         options: {
+            //             responsive: true,
+            //             maintainAspectRatio: false,
+            //             legend: {
+            //                 display: false
+            //             },
+            //             scales: {
+            //                 xAxes: [{
+            //                     gridLines: {
+            //                         display: false
+            //                     }
+            //                 }],
+            //                 yAxes: [{
+            //                     ticks: {
+            //                         beginAtZero: true
+            //                     },
+            //                     gridLines: {
+            //                         display: false,
+            //                     }
+            //                 }]
+            //             }
+            //         }
+            //     },
+            //     productiveDayChart: {
+            //         data: {
+            //             labels: [
+            //                 this.$trans('labels.sun'), this.$trans('labels.mon'), this.$trans('labels.tue'),
+            //                 this.$trans('labels.wed'), this.$trans('labels.thu'), this.$trans('labels.fri'),
+            //                 this.$trans('labels.sat'),
+            //             ],
+            //             datasets: [
+            //                 {
+            //                     backgroundColor: '#b4c6fc',
+            //                     borderColor: '#b4c6fc',
+            //                     pointBackgroundColor: '#fff',
+            //                     data: this.$page.tasks_by_day
+            //                 }
+            //             ],
+            //         },
+            //         options: {
+            //             responsive: true,
+            //             maintainAspectRatio: false,
+            //             legend: {
+            //                 display: false
+            //             },
+            //             scales: {
+            //                 xAxes: [{
+            //                     gridLines: {
+            //                         display: false
+            //                     }
+            //                 }],
+            //                 yAxes: [{
+            //                     ticks: {
+            //                         beginAtZero: true
+            //                     },
+            //                     gridLines: {
+            //                         display: false,
+            //                     }
+            //                 }]
+            //             }
+            //         }
+            //     }
             }
         }
     }
