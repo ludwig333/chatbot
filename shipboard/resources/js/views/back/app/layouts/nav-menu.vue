@@ -39,7 +39,7 @@
                 {{ $trans('labels.dashboard') }}
             </inertia-link>
 
-            <inertia-link
+            <!-- <inertia-link
                 :href="route('app:projects.index')"
                 :class="[ route().current('app:projects.index') ? 'text-white bg-gray-900' : 'text-gray-300']"
                 class="group mb-1 flex items-center px-6 py-2 text-sm leading-6 focus:outline-none focus:bg-gray-700 hover:text-white hover:bg-gray-700 transition ease-in-out duration-150"
@@ -49,9 +49,9 @@
                 </svg>
 
                 {{ $trans('labels.projects') }}
-            </inertia-link>
+            </inertia-link> -->
 
-            <inertia-link
+            <!-- <inertia-link
                 :href="route('app:tasks.index')"
                 :class="[ route().current('app:tasks.index') ? 'text-white bg-gray-900' : 'text-gray-300']"
                 class="group mb-1 flex items-center px-6 py-2 text-sm leading-6 focus:outline-none focus:bg-gray-700 hover:text-white hover:bg-gray-700 transition ease-in-out duration-150"
@@ -61,9 +61,9 @@
                 </svg>
 
                 {{ $trans('labels.my-tasks') }}
-            </inertia-link>
+            </inertia-link> -->
 
-            <inertia-link
+            <!-- <inertia-link
                 :href="route('app:calendar.index')"
                 :class="[ route().current('app:calendar.index') ? 'text-white bg-gray-900' : 'text-gray-300']"
                 class="group mb-1 flex items-center px-6 py-2 text-sm leading-6 focus:outline-none focus:bg-gray-700 hover:text-white hover:bg-gray-700 transition ease-in-out duration-150"
@@ -73,11 +73,11 @@
                 </svg>
 
                 {{ $trans('labels.calendar') }}
-            </inertia-link>
+            </inertia-link> -->
         </nav>
 
         <nav class="flex flex-col flex-1 mt-3 bg-gray-800">
-            <div class="px-6 mb-2">
+            <!-- <div class="px-6 mb-2">
                 <span class="text-sm text-gray-500 font-semibold">
                     {{ $trans('labels.favorites') }}
                 </span>
@@ -93,7 +93,7 @@
                     <div class="w-full h-full" :class="['bg-' + project.color + '-400']"></div>
                 </div>
                 {{ project.name }}
-            </inertia-link>
+            </inertia-link> -->
         </nav>
 
         <nav>
