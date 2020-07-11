@@ -25,24 +25,28 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $tasks = auth()->user()->tasks;
-        $completedTasksByMonth = $this->getCompletedTasksByMonth();
-        $completedTasksByDay = $this->getCompletedTasksByDay();
 
-        return Inertia::render('back/app/dashboard', [
-            'stats'                 => [
-                'projects'        => Project::accessible()->count(),
-                'total_tasks'     => $tasks->count(),
-                'open_tasks'      => $tasks->where('completed_at', null)->count(),
-                'completed_tasks' => $tasks->where('completed_at', '!=', null)->count(),
-            ],
-            'tasks_by_month'        => $completedTasksByMonth,
-            'tasks_by_month_count'  => collect($completedTasksByMonth)->sum(),
-            'tasks_by_day'          => $completedTasksByDay,
-            'tasks_by_day_count'    => collect($completedTasksByDay)->sum(),
-            'most_productive_month' => month_from_int($completedTasksByMonth->search($completedTasksByMonth->max(), true)),
-            'most_productive_day'   => day_from_int($completedTasksByDay->search($completedTasksByDay->max(), true))
-        ]);
+        return Inertia::render('back/app/dashboard');
+
+        //@todo removed the following code within task for removing project management
+        // $tasks = auth()->user()->tasks;
+        // $completedTasksByMonth = $this->getCompletedTasksByMonth();
+        // $completedTasksByDay = $this->getCompletedTasksByDay();
+
+        // return Inertia::render('back/app/dashboard', [
+            // 'stats'                 => [
+            //     'projects'        => Project::accessible()->count(),
+            //     'total_tasks'     => $tasks->count(),
+            //     'open_tasks'      => $tasks->where('completed_at', null)->count(),
+            //     'completed_tasks' => $tasks->where('completed_at', '!=', null)->count(),
+            // ],
+            // 'tasks_by_month'        => $completedTasksByMonth,
+            // 'tasks_by_month_count'  => collect($completedTasksByMonth)->sum(),
+            // 'tasks_by_day'          => $completedTasksByDay,
+            // 'tasks_by_day_count'    => collect($completedTasksByDay)->sum(),
+            // 'most_productive_month' => month_from_int($completedTasksByMonth->search($completedTasksByMonth->max(), true)),
+            // 'most_productive_day'   => day_from_int($completedTasksByDay->search($completedTasksByDay->max(), true))
+        // ]);
     }
 
     /**
