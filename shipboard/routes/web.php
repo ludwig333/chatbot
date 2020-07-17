@@ -191,72 +191,72 @@ Route::group(['namespace' => 'Web\Back\App', 'prefix' => 'app', 'as' => 'app:'],
     /**
      * Projects
      */
-    Route::resource('projects', 'Projects\ProjectsController');
-    Route::put('projects/{project}/restore', 'Projects\ProjectsController@restore')->name('projects.restore');
+    // Route::resource('projects', 'Projects\ProjectsController');
+    // Route::put('projects/{project}/restore', 'Projects\ProjectsController@restore')->name('projects.restore');
 
     /**
      * Complete Projects
      */
-    Route::post('projects/{project}/complete', 'Projects\CompleteProjectsController@store')->name('projects.complete.store');
-    Route::delete('projects/{project}/complete', 'Projects\CompleteProjectsController@destroy')->name('projects.complete.destroy');
+    // Route::post('projects/{project}/complete', 'Projects\CompleteProjectsController@store')->name('projects.complete.store');
+    // Route::delete('projects/{project}/complete', 'Projects\CompleteProjectsController@destroy')->name('projects.complete.destroy');
 
     /**
      * Favorite Projects
      */
-    Route::post('favorite-projects', 'Projects\FavoriteProjectsController@store')->name('favorite-projects.store');
-    Route::delete('favorite-projects/{project}', 'Projects\FavoriteProjectsController@destroy')->name('favorite-projects.destroy');
+    // Route::post('favorite-projects', 'Projects\FavoriteProjectsController@store')->name('favorite-projects.store');
+    // Route::delete('favorite-projects/{project}', 'Projects\FavoriteProjectsController@destroy')->name('favorite-projects.destroy');
 
     /**
      * Project Columns
      */
-    Route::post('projects/{project}/columns', 'Projects\ProjectColumnsController@store')->name('project.columns.store');
-    Route::put('projects/{project}/columns/sort', 'Projects\ProjectColumnsSortController@update')->name('project.columns.sort.update');
-    Route::put('projects/{project}/columns/{column}', 'Projects\ProjectColumnsController@update')->name('project.columns.update');
-    Route::delete('projects/{project}/columns/{column}', 'Projects\ProjectColumnsController@destroy')->name('project.columns.destroy');
+    // Route::post('projects/{project}/columns', 'Projects\ProjectColumnsController@store')->name('project.columns.store');
+    // Route::put('projects/{project}/columns/sort', 'Projects\ProjectColumnsSortController@update')->name('project.columns.sort.update');
+    // Route::put('projects/{project}/columns/{column}', 'Projects\ProjectColumnsController@update')->name('project.columns.update');
+    // Route::delete('projects/{project}/columns/{column}', 'Projects\ProjectColumnsController@destroy')->name('project.columns.destroy');
 
     /**
      * Project Tasks
      */
-    Route::put('projects/{project}/tasks/{task}', 'Projects\ProjectTasksController@update')->name('project.tasks.update');
-    Route::post('projects/{project}/columns/{column}/tasks', 'Projects\ProjectTasksController@store')->name('project.tasks.store');
-    Route::put('projects/{project}/columns/{column}/tasks/sort', 'Projects\ProjectTasksSortController@update')->name('project.tasks.sort.update');
-    Route::delete('projects/{project}/tasks/{task}', 'Projects\ProjectTasksController@destroy')->name('project.tasks.destroy');
+    // Route::put('projects/{project}/tasks/{task}', 'Projects\ProjectTasksController@update')->name('project.tasks.update');
+    // Route::post('projects/{project}/columns/{column}/tasks', 'Projects\ProjectTasksController@store')->name('project.tasks.store');
+    // Route::put('projects/{project}/columns/{column}/tasks/sort', 'Projects\ProjectTasksSortController@update')->name('project.tasks.sort.update');
+    // Route::delete('projects/{project}/tasks/{task}', 'Projects\ProjectTasksController@destroy')->name('project.tasks.destroy');
 
     /**
      * Project Watchers
      */
-    Route::post('projects/{project}/watchers', 'Projects\ProjectWatchersController@store')->name('project.watchers.store');
-    Route::delete('projects/{project}/watchers', 'Projects\ProjectWatchersController@destroy')->name('project.watchers.destroy');
+    // Route::post('projects/{project}/watchers', 'Projects\ProjectWatchersController@store')->name('project.watchers.store');
+    // Route::delete('projects/{project}/watchers', 'Projects\ProjectWatchersController@destroy')->name('project.watchers.destroy');
 
     /**
      * Task Comments
      */
-    Route::get('projects/{project}/tasks/{task}/comments', 'Projects\TaskCommentsController@index')->name('project.task.comments.index');
-    Route::post('projects/{project}/tasks/{task}/comments', 'Projects\TaskCommentsController@store')->name('project.task.comments.store');
+    // Route::get('projects/{project}/tasks/{task}/comments', 'Projects\TaskCommentsController@index')->name('project.task.comments.index');
+    // Route::post('projects/{project}/tasks/{task}/comments', 'Projects\TaskCommentsController@store')->name('project.task.comments.store');
 
     /**
      * Sub Tasks
      */
-    Route::get('projects/{project}/tasks/{task}/subtasks', 'Projects\ProjectSubTasksController@index')->name('project.task.sub-tasks.index');
-    Route::post('projects/{project}/tasks/{task}/subtasks', 'Projects\ProjectSubTasksController@store')->name('project.task.sub-tasks.store');
+    // Route::get('projects/{project}/tasks/{task}/subtasks', 'Projects\ProjectSubTasksController@index')->name('project.task.sub-tasks.index');
+    // Route::post('projects/{project}/tasks/{task}/subtasks', 'Projects\ProjectSubTasksController@store')->name('project.task.sub-tasks.store');
 
     /**
      * Task Attachments
      */
-    Route::get('projects/{project}/tasks/{task}/attachments', 'Projects\TaskAttachmentsController@index')->name('project.task.attachments.index');
-    Route::get('projects/{project}/attachments/{attachment}/download', 'Projects\ProjectAttachmentsDownloadController@get')->name('project.attachments.download');
-    Route::post('projects/{project}/tasks/{task}/attachments', 'Projects\TaskAttachmentsController@store')->name('project.task.attachments.store');
-    Route::get('projects/{project}/tasks/{task}/attachments', 'Projects\TaskAttachmentsController@index')->name('project.task.attachments.index');
+    // Route::get('projects/{project}/tasks/{task}/attachments', 'Projects\TaskAttachmentsController@index')->name('project.task.attachments.index');
+    // Route::get('projects/{project}/attachments/{attachment}/download', 'Projects\ProjectAttachmentsDownloadController@get')->name('project.attachments.download');
+    // Route::post('projects/{project}/tasks/{task}/attachments', 'Projects\TaskAttachmentsController@store')->name('project.task.attachments.store');
+    // Route::get('projects/{project}/tasks/{task}/attachments', 'Projects\TaskAttachmentsController@index')->name('project.task.attachments.index');
 
     /**
      * My Tasks
      */
-    Route::get('tasks', 'TasksController@index')->name('tasks.index');
+    // Route::get('tasks', 'TasksController@index')->name('tasks.index');
 
     /**
      * Calendar
      */
-    Route::get('calendar', 'CalendarController@index')->name('calendar.index');
+    // Route::get('calendar', 'CalendarController@index')->name('calendar.index');
 
     /**
      * Team Members
@@ -284,4 +284,12 @@ Route::group(['namespace' => 'Web\Back\App', 'prefix' => 'app', 'as' => 'app:'],
      */
     Route::get('settings/billing-information', 'Settings\BillingInformationController@edit')->name('billing-information.edit');
     Route::put('settings/billing-information', 'Settings\BillingInformationController@update')->name('billing-information.update');
+
+
+    /**
+     * Botman Routes
+     */
+    Route::post('/botman', function() {
+        app('botman')->listen();
+    });
 });
