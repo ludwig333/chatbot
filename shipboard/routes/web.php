@@ -189,6 +189,13 @@ Route::group(['namespace' => 'Web\Back\App', 'prefix' => 'app', 'as' => 'app:'],
     Route::put('account/system-preferences', 'Account\SystemPreferencesController@update')->name('system-preferences.update');
 
     /**
+     * Bots
+     */
+    Route::post('bots/commands', 'Bots\BotCommandController@store')->name('bots.command.store');
+    Route::put('bots/commands', 'Bots\BotCommandController@update')->name('bots.command.update');
+    Route::resource('bots','Bots\BotsController');
+    Route::match(['get', 'post'],'/{uuid}', 'Bots\BotsController@handle')->name('bot');
+    /**
      * Projects
      */
     // Route::resource('projects', 'Projects\ProjectsController');

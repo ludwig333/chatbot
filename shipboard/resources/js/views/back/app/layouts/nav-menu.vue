@@ -39,17 +39,17 @@
                 {{ $trans('labels.dashboard') }}
             </inertia-link>
 
-            <!-- <inertia-link
-                :href="route('app:projects.index')"
-                :class="[ route().current('app:projects.index') ? 'text-white bg-gray-900' : 'text-gray-300']"
+            <inertia-link
+                :href="route('app:bots.index')"
+                :class="[ route().current('app:bots.index') ? 'text-white bg-gray-900' : 'text-gray-300']"
                 class="group mb-1 flex items-center px-6 py-2 text-sm leading-6 focus:outline-none focus:bg-gray-700 hover:text-white hover:bg-gray-700 transition ease-in-out duration-150"
             >
                 <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current mr-3">
                     <path d="M10 1l10 6-10 6L0 7l10-6zm6.67 10L20 13l-10 6-10-6 3.33-2L10 15l6.67-4z"></path>
                 </svg>
 
-                {{ $trans('labels.projects') }}
-            </inertia-link> -->
+                {{ $trans('labels.bots') }}
+            </inertia-link>
 
             <!-- <inertia-link
                 :href="route('app:tasks.index')"
