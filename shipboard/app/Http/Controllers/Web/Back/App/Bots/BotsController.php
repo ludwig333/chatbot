@@ -9,26 +9,28 @@ use Inertia\Inertia;
 use App\Bot;
 use Illuminate\Support\Facades\DB;
 use App\Models\BotCommand;
+use BotMan\BotMan\Drivers\DriverManager;
+use BotMan\BotMan\BotManFactory;
+use BotMan\BotMan\Facades\BotMan;
+use App\Services\TelegramServices;
 
 class BotsController extends Controller
 {
     private $botRepository;
+
 
     public function __construct(BotRepositories $botRepository)
     {
         $this->botRepository = $botRepository;
     }
 
-    public function handle($uuid)
+    public function handle()
     {
         $botman = app('botman');
 
         $botman->listen();
-
-        $bot = Bot::where('uuid', $uuid)->first();
-
-        $commands = $bot->commands;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -148,6 +150,16 @@ class BotsController extends Controller
         } catch (\Exception $exception) {
             DB::rollBack();
         }
+    }
+
+    public function connect($id)
+    {
+        $config = DB::table('telegram_config')->where('bot_id', $id)->first();
+        if($config) {
+            (new TelegramServices())->register($config->access_token, $id);
+        }
+
+        return back();
     }
 
 }

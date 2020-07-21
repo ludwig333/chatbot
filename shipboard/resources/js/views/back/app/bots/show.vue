@@ -20,10 +20,7 @@
                             </button>
                         </div>
                         <div class="px-0 sm:px-2">
-<!--                            <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>-->
-                            <button class="btn btn-indigo">
-                                Try Bot
-                            </button>
+                            <inertia-link :href="route('app:bots.connect', {id: $page.bot.id})" class="btn btn-indigo">Connect</inertia-link>
                         </div>
                     </div>
                 </div>
@@ -88,7 +85,6 @@
             VEmptyView,
             VAlert
         },
-
         methods: {
             showEditTelegramBotModal() {
                 this.$modal(VEditTelegramBotModal, {

@@ -191,10 +191,10 @@ Route::group(['namespace' => 'Web\Back\App', 'prefix' => 'app', 'as' => 'app:'],
     /**
      * Bots
      */
+    Route::get('bots/connect/{id}', 'Bots\BotsController@connect')->name('bots.connect');
     Route::post('bots/commands', 'Bots\BotCommandController@store')->name('bots.command.store');
     Route::put('bots/commands', 'Bots\BotCommandController@update')->name('bots.command.update');
     Route::resource('bots','Bots\BotsController');
-    Route::match(['get', 'post'],'/{uuid}', 'Bots\BotsController@handle')->name('bot');
     /**
      * Projects
      */
@@ -292,11 +292,12 @@ Route::group(['namespace' => 'Web\Back\App', 'prefix' => 'app', 'as' => 'app:'],
     Route::get('settings/billing-information', 'Settings\BillingInformationController@edit')->name('billing-information.edit');
     Route::put('settings/billing-information', 'Settings\BillingInformationController@update')->name('billing-information.update');
 
-
-    /**
-     * Botman Routes
-     */
-    Route::post('/botman', function() {
-        app('botman')->listen();
-    });
 });
+
+Route::group(['namespace' => 'Web\Back\App\Bots', 'as' => ':bot'], function () {
+    /**
+     * Bots Instance
+     */
+    Route::match(['get', 'post'], '/telegram/{id}', 'TelegramBotController');
+});
+
