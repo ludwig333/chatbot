@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "botman/botman": "^2.6",
+        "botman/driver-facebook": "^1.10",
         "botman/driver-slack": "^2.2",
         "botman/driver-telegram": "^1.6",
         "botman/tinker": "^1.2",

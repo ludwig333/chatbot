@@ -189,6 +189,13 @@ Route::group(['namespace' => 'Web\Back\App', 'prefix' => 'app', 'as' => 'app:'],
     Route::put('account/system-preferences', 'Account\SystemPreferencesController@update')->name('system-preferences.update');
 
     /**
+     * Bots
+     */
+    Route::get('bots/connect/{id}', 'Bots\BotController@connect')->name('bots.connect');
+    Route::post('bots/commands', 'Bots\BotCommandController@store')->name('bots.command.store');
+    Route::put('bots/commands/{id}', 'Bots\BotCommandController@update')->name('bots.command.update');
+    Route::resource('bots','Bots\BotController');
+    /**
      * Projects
      */
     // Route::resource('projects', 'Projects\ProjectsController');
@@ -285,11 +292,14 @@ Route::group(['namespace' => 'Web\Back\App', 'prefix' => 'app', 'as' => 'app:'],
     Route::get('settings/billing-information', 'Settings\BillingInformationController@edit')->name('billing-information.edit');
     Route::put('settings/billing-information', 'Settings\BillingInformationController@update')->name('billing-information.update');
 
-
-    /**
-     * Botman Routes
-     */
-    Route::post('/botman', function() {
-        app('botman')->listen();
-    });
 });
+
+Route::group(['namespace' => 'Web\Back\App\Bots', 'as' => ':bot'], function () {
+    /**
+     * Bots Instance
+     */
+    Route::match(['get', 'post'], '/telegram/{id}', 'TelegramBotController');
+    Route::match(['get', 'post'], '/facebook/{id}', 'MessengerBotController');
+//    Route::match(['get', 'post'], '/{id}', 'BotChannelController');
+});
+

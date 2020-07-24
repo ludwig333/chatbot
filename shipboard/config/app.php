@@ -176,7 +176,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\InertiaServiceProvider::class,
         App\Billing\BillingServiceProvider::class,
-
     ],
 
     /*
