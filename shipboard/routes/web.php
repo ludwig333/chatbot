@@ -191,10 +191,10 @@ Route::group(['namespace' => 'Web\Back\App', 'prefix' => 'app', 'as' => 'app:'],
     /**
      * Bots
      */
-    Route::get('bots/connect/{id}', 'Bots\BotsController@connect')->name('bots.connect');
+    Route::get('bots/connect/{id}', 'Bots\BotController@connect')->name('bots.connect');
     Route::post('bots/commands', 'Bots\BotCommandController@store')->name('bots.command.store');
-    Route::put('bots/commands', 'Bots\BotCommandController@update')->name('bots.command.update');
-    Route::resource('bots','Bots\BotsController');
+    Route::put('bots/commands/{id}', 'Bots\BotCommandController@update')->name('bots.command.update');
+    Route::resource('bots','Bots\BotController');
     /**
      * Projects
      */
@@ -299,5 +299,7 @@ Route::group(['namespace' => 'Web\Back\App\Bots', 'as' => ':bot'], function () {
      * Bots Instance
      */
     Route::match(['get', 'post'], '/telegram/{id}', 'TelegramBotController');
+    Route::match(['get', 'post'], '/facebook/{id}', 'MessengerBotController');
+//    Route::match(['get', 'post'], '/{id}', 'BotChannelController');
 });
 

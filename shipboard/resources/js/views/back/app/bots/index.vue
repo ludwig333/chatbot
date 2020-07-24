@@ -3,84 +3,15 @@
         <template v-slot:header>
             <h1 class="text-2xl font-semibold text-gray-900">{{ $trans('headings.bots') }}</h1>
         </template>
-
+        <div class="flex items-center justify-end w-full mb-4 sm:mb-0 sm:w-1/2 -mx-2">
+            <div class="px-0 sm:px-2">
+                <button class="btn btn-indigo" @click="showCreateBotModal()">
+                    {{ 'Create Bot' }}
+                </button>
+            </div>
+        </div>
         <template>
             <div class="container mx-auto flex flex-col flex-1 px-4 sm:px-6 md:px-8 py-4">
-                <div>
-                    <h2>Create Bot </h2>
-                    <div class="grid grid-cols-1 gap-6 mt-5 mb-6 sm:grid-cols-2 lg:grid-cols-4">
-                        <button @click="showCreateTelegramBotModal()">
-                            <div class="bg-white overflow-hidden shadow rounded-lg" >
-                                <div class="px-4 py-5 sm:p-6">
-                                    <div class="flex items-center">
-                                        <img :src="'/imgs/platforms/telegram.png'" height= "30%" width="30%">
-                                        <div class="ml-5 w-0 flex-1">
-                                            <dl>
-                                                <dt class="text-sm leading-5 font-medium text-gray-500 truncate">
-                                                    Telegram
-                                                </dt>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </button>
-
-                        <button @click="showCreateSlackBotModal()">
-                            <div class="bg-white overflow-hidden shadow rounded-lg">
-                                <div class="px-4 py-5 sm:p-6">
-                                    <div class="flex items-center">
-                                        <img :src="'/imgs/platforms/slack.png'" height= "30%" width="30%">
-
-                                        <div class="ml-5 w-0 flex-1">
-                                            <dl>
-                                                <dt class="text-sm leading-5 font-medium text-gray-500 truncate">
-                                                    Slack
-                                                </dt>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </button>
-
-                        <button>
-                            <div class="bg-white overflow-hidden shadow rounded-lg">
-                                <div class="px-4 py-5 sm:p-6">
-                                    <div class="flex items-center">
-                                        <img :src="'/imgs/platforms/messenger.png'" height= "30%" width="30%">
-
-                                        <div class="ml-5 w-0 flex-1">
-                                            <dl>
-                                                <dt class="text-sm leading-5 font-medium text-gray-500 truncate">
-                                                    Messenger
-                                                </dt>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </button>
-
-                        <button>
-                            <div class="bg-white overflow-hidden shadow rounded-lg">
-                                <div class="px-4 py-5 sm:p-6">
-                                    <div class="flex items-center">
-                                        <img :src="'/imgs/platforms/wechat.png'" height= "30%" width="30%">
-                                        <div class="ml-5 w-0 flex-1">
-                                            <dl>
-                                                <dt class="text-sm leading-5 font-medium text-gray-500 truncate">
-                                                    WeChat
-                                                </dt>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </button>
-
-                    </div>
-                </div>
                 <v-alert v-if="$page.flash" dismissible>{{ $page.flash }}</v-alert>
 
                 <h2>Your Bots</h2>
@@ -135,7 +66,7 @@
 <script>
     import VAppDefaultLayout from '@/views/back/app/layouts/default'
     import VCreateTelegramBotModal from '@/views/back/app/bots/telegram-bot-create'
-    import VCreateSlackBotModal from '@/views/back/app/bots/slack-bot-create'
+    import VCreateBotModal from '@/views/back/app/bots/bot-create';
     import VEmptyView from '@/views/common/empty'
     import VPagination from '@/components/pagination'
     import VAlert from '@/components/alert/alert'
@@ -160,8 +91,8 @@
             showCreateTelegramBotModal() {
                 this.$modal(VCreateTelegramBotModal);
             },
-            showCreateSlackBotModal() {
-                this.$modal(VCreateSlackBotModal);
+            showCreateBotModal() {
+                this.$modal(VCreateBotModal)
             }
         }
     }

@@ -10,7 +10,12 @@
                 <div class="flex flex-col sm:flex-row flex-col-reverse items-center justify-between mb-6">
                     <div class="flex items-center justify-end w-full mb-4 sm:mb-0 sm:w-1/2 -mx-2">
                         <div class="px-0 sm:px-2">
-                            <button class="btn btn-indigo" @click="showEditTelegramBotModal()">
+                            <button class="btn btn-indigo" @click="showDeleteBotModal()">
+                                Delete
+                            </button>
+                        </div>
+                        <div class="px-0 sm:px-2">
+                            <button class="btn btn-indigo" @click="showEditBotModal()">
                                 Edit
                             </button>
                         </div>
@@ -27,7 +32,7 @@
                 <div class="bg-white shadow overflow-hidden rounded-md" v-if="$page.commands.length">
                     <ul>
                         <li class="border-b border-gray-100 last:border-0" v-for="command in $page.commands">
-                            <button class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+                            <button @click="showEditCommandModal(command)" class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                                 <div class="px-6 py-4 flex items-center">
                                     <div class="min-w-0 flex-1 md:grid md:grid-cols-8 md:gap-4">
                                         <div class="md:col-span-4">
@@ -38,7 +43,7 @@
 
                                                 <div class="mt-2 flex">
                                                     <div class="flex items-center text-sm leading-5 text-gray-500 truncate">
-                                                        <span>{{ command.reply }}</span>
+                                                        <span>{{ command.response }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,7 +73,8 @@
 
 <script>
     import VAppDefaultLayout from '@/views/back/app/layouts/default'
-    import VEditTelegramBotModal from '@/views/back/app/bots/telegram-bot-edit'
+    import VDeleteBotModal from '@/views/back/app/bots/bot-delete'
+    import VEditBotModal from '@/views/back/app/bots/bot-edit'
     import VCreateCommandModal from '@/views/back/app/bots/command-add'
     import VEditCommandModal from '@/views/back/app/bots/command-edit'
     import VEmptyView from '@/views/common/empty'
@@ -86,8 +92,14 @@
             VAlert
         },
         methods: {
-            showEditTelegramBotModal() {
-                this.$modal(VEditTelegramBotModal, {
+            showDeleteBotModal() {
+                this.$modal(VDeleteBotModal, {
+                    bot:this.$page.bot
+                })
+            },
+
+            showEditBotModal() {
+                this.$modal(VEditBotModal, {
                     bot: this.$page.bot
                 });
             },
@@ -97,11 +109,11 @@
                 })
             },
 
-            showEditCommandModal() {
-                this.$modal(VEditCommandModal, {
-                    command: this.command
+            showEditCommandModal(command) {
+                this.$modal(VEditCommandModal,{
+                    command
                 })
-            }
+            },
         }
     }
 </script>

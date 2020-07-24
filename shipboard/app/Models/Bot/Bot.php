@@ -1,10 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models\Bot;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use App\Models\BotCommand;
 
 class Bot extends Model
 {
@@ -12,7 +11,6 @@ class Bot extends Model
 
     protected $fillable = [
         'name',
-        'welcome_text',
         'user_id'
     ];
 
@@ -25,13 +23,18 @@ class Bot extends Model
     {
         parent::boot();
 
-        static::creating(function ($project) {
-            $project->uuid = Str::uuid();
+        static::creating(function ($bot) {
+            $bot->uuid = Str::uuid();
         });
     }
 
     public function commands()
     {
         return $this->hasMany(BotCommand::class, 'bot_id');
+    }
+
+    public function platforms()
+    {
+        return $this->hasMany(BotConfiguration::class, 'bot_id');
     }
 }

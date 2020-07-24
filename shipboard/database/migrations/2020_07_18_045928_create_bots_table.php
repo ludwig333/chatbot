@@ -17,10 +17,8 @@ class CreateBotsTable extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('name');
-            $table->string('welcome_text')->nullable();
             $table->bigInteger('user_id');
             $table->timestamps();
-
             $table->unique(['name', 'user_id']);
         });
     }

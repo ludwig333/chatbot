@@ -15,9 +15,10 @@ class CreateBotCommandsTable extends Migration
     {
         Schema::create('bot_commands', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->string('command');
-            $table->string('reply');
-            $table->string('bot_id');
+            $table->string('response');
+            $table->foreignId('bot_id')->constrained('bots')->cascadeOnDelete();
             $table->timestamps();
         });
     }

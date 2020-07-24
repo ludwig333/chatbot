@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use BotMan\BotMan\BotMan;
-use App\Bot;
 use App\Http\Middleware\Bot\ReceivedMiddleware;
-use App\Models\BotCommand;
+use App\Models\Bot\Bot;
+use App\Models\Bot\BotCommand;
 
 class TelegramBotController extends Controller
 {
@@ -34,20 +34,13 @@ class TelegramBotController extends Controller
         //Applying middleware
 //        $botman->middleware->received(new ReceivedMiddleware($id));
 
-        //Welcome text when the bot is triggered
-        $botman->hears('/start', function (BotMan $bot) use ($welcome_text) {
-           $bot->reply($welcome_text);
-        });
-
         // Give the bot something to listen for.
         $botman->hears('(.*)', function (BotMan $bot) use($id) {
             $message = $bot->getMessage()->getText();
-            if($message == '/start'){
-                return;
-            }
+
             $command = BotCommand::where('bot_id', $id)->where('command', $message)->first();
             if($command) {
-                $bot->reply($command->reply);
+                $bot->reply($command->response);
             } else {
                 $bot->reply('Sorry could not understand you.');
             }

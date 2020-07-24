@@ -2,7 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Bot;
+use App\Models\Bot\Bot;
+use App\Models\Bot\BotCommand;
 
 class BotRepositories {
 
@@ -14,5 +15,18 @@ class BotRepositories {
     public function getUserBots($user)
     {
         return Bot::where('user_id', $user->id)->get();
+    }
+
+    public function getBotCommands($id)
+    {
+        return BotCommand::where('bot_id', $id)
+            ->get()
+            ->map(function ($command) {
+                return [
+                    'uuid' => $command->uuid,
+                    'command' => $command->command,
+                    'response' => $command->response,
+                ];
+            });
     }
 }
