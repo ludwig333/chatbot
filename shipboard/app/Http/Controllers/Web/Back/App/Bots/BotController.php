@@ -10,6 +10,14 @@ use App\Http\Requests\CreateBotRequest;
 use App\Models\Bot\Bot;
 use App\Http\Requests\UpdateBotRequest;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\UpdatePlatformConfiguration;
+use App\Models\Bot\BotConfiguration;
+use App\Jobs\RegisterTelegramBot;
+use App\Constants\PlatformConstant;
+use App\Models\Bot\TelegramConfiguration;
+use App\Models\Bot\SlackConfiguration;
+use Illuminate\Support\Facades\DB;
+use App\Models\Bot\FacebookConfiguration;
 
 class BotController extends Controller
 {
@@ -66,10 +74,12 @@ class BotController extends Controller
         $bot = Bot::where('uuid',$id)->first();
 
         $commands = $this->botRepository->getBotCommands($bot->id);
+        $baseUrl = env('TARGET_URL');
 
         return Inertia::render('back/app/bots/show', [
             'bot'    => $bot,
-            'commands' => $commands
+            'commands' => $commands,
+            'base_url' => $baseUrl,
         ]);
 
     }
@@ -113,14 +123,37 @@ class BotController extends Controller
         }
     }
 
-    public function connect($id)
+    public function updateConfiguration(UpdatePlatformConfiguration $request, $id)
     {
-        $config = DB::table('telegram_config')->where('bot_id', $id)->first();
-        if($config) {
-            (new TelegramServices())->register($config->access_token, $id);
-        }
+        try {
+            DB::beginTransaction();
+            $bot = Bot::where('uuid', $id)->firstOrFail();
 
-        return back();
+            if($request->get('platform') == PlatformConstant::TELEGRAM) {
+                $config = TelegramConfiguration::updateOrCreate(['bot_id' => $bot->id], $request->getInputValues());
+                $config->connections()->create(['bot_id' => $bot->id]);
+//                if($config->platform == PlatformConstant::TELEGRAM) {
+//                    RegisterTelegramBot::dispatch($config, $bot->uuid);
+//                }
+                (new TelegramServices())->register($config->access_token, $bot->uuid);
+            } else if($request->get('platform') == PlatformConstant::SLACK) {
+                $config = SlackConfiguration::updateOrCreate(['bot_id' => $bot->id], $request->getInputValues());
+                $config->connections()->create(['bot_id' => $bot->id]);
+            } else if($request->get('platform') == PlatformConstant::FACEBOOK) {
+                $config = FacebookConfiguration::updateOrCreate(['bot_id' => $bot->id], $request->getInputValues());
+                $config->connections()->create(['bot_id' => $bot->id]);
+            }
+
+            DB::commit();
+            session()->flash('message', __('Bot '. $config->platform . ' configuration updated successfully.'));
+            return back();
+
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error($exception);
+            session()->flash('error', __('Failed to update configuration.'));
+            return back();
+        }
     }
 
 }

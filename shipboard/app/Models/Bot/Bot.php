@@ -33,8 +33,9 @@ class Bot extends Model
         return $this->hasMany(BotCommand::class, 'bot_id');
     }
 
-    public function platforms()
+    public function configurations()
     {
-        return $this->hasMany(BotConfiguration::class, 'bot_id');
+        return $this->hasMany(BotConnection::class, 'bot_id')->with('connectable');
     }
+
 }

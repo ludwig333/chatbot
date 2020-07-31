@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBotConfigurationsTable extends Migration
+class CreateFacebookConfigurationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateBotConfigurationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bot_configurations', function (Blueprint $table) {
+        Schema::create('facebook_configurations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bot_id')->constrained('bots')->cascadeOnDelete();
-            $table->string('platform');
-            $table->string('username');
-            $table->string('verification_code')->nullable();
             $table->string('access_token');
-            $table->integer('connect_status')->default(0);
+            $table->string('app_secret')->nullable();
+            $table->string('verification_code');
+            $table->tinyInteger('connect_status')->default(0);
+            $table->foreignId('bot_id')->constrained('bots')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateBotConfigurationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('telegram_config');
+        Schema::dropIfExists('facebook_configurations');
     }
 }
