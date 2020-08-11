@@ -8,7 +8,7 @@ To get started, make sure you have [Docker installed](https://docs.docker.com/do
 
 The shipboard laravel project is inside `shipboard` folder. If you don't want to used the docker then you can just ignore other folder and work into shipboard folder. 
 **For Using Docker**
-And for docker run `docker-compose up -d --build` which will build your docker images and start the container. Open up your browser of choice to [http://localhost:8080](http://localhost:8080) and you should see your Laravel app running as intended. 
+And for docker run `docker-compose up -d --build` which will build your docker images and start the container. Open up your browser of choice to [http://localhost:8082](http://localhost:8080) and you should see your Laravel app running as intended. 
 
 **New:** Three new containers have been added that handle Composer, NPM, and Artisan commands without having to have these platforms installed on your local computer. Use the following command templates from your project root, modifiying them to fit your particular use case:
 
