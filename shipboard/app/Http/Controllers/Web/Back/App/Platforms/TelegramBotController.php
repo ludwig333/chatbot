@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web\Back\App\Bots;
+namespace App\Http\Controllers\Web\Back\App\Platforms;
 
 use Illuminate\Http\Request;
 use BotMan\BotMan\Drivers\DriverManager;
@@ -12,22 +12,23 @@ use BotMan\BotMan\BotMan;
 use App\Http\Middleware\Bot\ReceivedMiddleware;
 use App\Models\Bot\Bot;
 use App\Models\Bot\BotCommand;
+use App\Models\Bot\TelegramConfiguration;
+use BotMan\Drivers\Telegram\TelegramDriver;
 
 class TelegramBotController extends Controller
 {
     public function __invoke($id, Request $request)
     {
-        Log::info($request->getBaseUrl());
-        $config = DB::table('telegram_config')->where('bot_id', $id)->first();
-        $welcome_text = Bot::where('id', $id)->first()->welcome_text;
-
+        $bot = Bot::where('uuid', $id)->first();
+        $botId = $bot->id;
+        $config = TelegramConfiguration::where('bot_id', $bot->id)->first();
         $config = [
             'telegram' => [
                 'token' => $config->access_token
             ]
         ];
         // Load the driver(s) you want to use
-        DriverManager::loadDriver(\BotMan\Drivers\Telegram\TelegramDriver::class);
+        DriverManager::loadDriver(TelegramDriver::class);
         // Create an instance
         $botman = BotManFactory::create($config);
 
@@ -35,14 +36,14 @@ class TelegramBotController extends Controller
 //        $botman->middleware->received(new ReceivedMiddleware($id));
 
         // Give the bot something to listen for.
-        $botman->hears('(.*)', function (BotMan $bot) use($id) {
+        $botman->hears('(.*)', function (BotMan $bot) use($botId) {
             $message = $bot->getMessage()->getText();
 
-            $command = BotCommand::where('bot_id', $id)->where('command', $message)->first();
+            $command = BotCommand::where('bot_id', $botId)->where('command', $message)->first();
             if($command) {
                 $bot->reply($command->response);
             } else {
-                $bot->reply('Sorry could not understand you.');
+                $bot->reply('Sorry could not understand YOU!!.');
             }
         });
 

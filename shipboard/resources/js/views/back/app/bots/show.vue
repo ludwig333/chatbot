@@ -24,9 +24,81 @@
                                 Add Command
                             </button>
                         </div>
-                        <div class="px-0 sm:px-2">
-                            <inertia-link :href="route('app:bots.connect', {id: $page.bot.id})" class="btn btn-indigo">Connect</inertia-link>
-                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2>Connect to Platform </h2>
+                    <div class="grid grid-cols-1 gap-6 mt-5 mb-6 sm:grid-cols-2 lg:grid-cols-4">
+                        <button @click="showConnectTelegramModal()">
+                            <div class="bg-white overflow-hidden shadow rounded-lg" >
+                                <div class="px-4 py-5 sm:p-6">
+                                    <div class="flex items-center">
+                                        <img :src="'/imgs/platforms/telegram.png'" height= "30%" width="30%">
+                                        <div class="ml-5 w-0 flex-1">
+                                            <dl>
+                                                <dt class="text-sm leading-5 font-medium text-gray-500 truncate">
+                                                    Telegram
+                                                </dt>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+
+                        <button @click="showConnectSlackModal()">
+                            <div class="bg-white overflow-hidden shadow rounded-lg">
+                                <div class="px-4 py-5 sm:p-6">
+                                    <div class="flex items-center">
+                                        <img :src="'/imgs/platforms/slack.png'" height= "30%" width="30%">
+
+                                        <div class="ml-5 w-0 flex-1">
+                                            <dl>
+                                                <dt class="text-sm leading-5 font-medium text-gray-500 truncate">
+                                                    Slack
+                                                </dt>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+
+                        <button @click="showConnectMessengerModal()">
+                            <div class="bg-white overflow-hidden shadow rounded-lg">
+                                <div class="px-4 py-5 sm:p-6">
+                                    <div class="flex items-center">
+                                        <img :src="'/imgs/platforms/messenger.png'" height= "30%" width="30%">
+
+                                        <div class="ml-5 w-0 flex-1">
+                                            <dl>
+                                                <dt class="text-sm leading-5 font-medium text-gray-500 truncate">
+                                                    Messenger
+                                                </dt>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+
+                        <button @click="showConnectWeChatModal()">
+                            <div class="bg-white overflow-hidden shadow rounded-lg">
+                                <div class="px-4 py-5 sm:p-6">
+                                    <div class="flex items-center">
+                                        <img :src="'/imgs/platforms/wechat.png'" height= "30%" width="30%">
+                                        <div class="ml-5 w-0 flex-1">
+                                            <dl>
+                                                <dt class="text-sm leading-5 font-medium text-gray-500 truncate">
+                                                    WeChat
+                                                </dt>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+
                     </div>
                 </div>
                 <div class="bg-white shadow overflow-hidden rounded-md" v-if="$page.commands.length">
@@ -77,6 +149,10 @@
     import VEditBotModal from '@/views/back/app/bots/bot-edit'
     import VCreateCommandModal from '@/views/back/app/bots/command-add'
     import VEditCommandModal from '@/views/back/app/bots/command-edit'
+    import VConnectTelegramModal from '@/views/back/app/platforms/configure-telegram';
+    import VConnectSlackModal from '@/views/back/app/platforms/configure-slack';
+    import VConnectFacebookModal from '@/views/back/app/platforms/configure-facebook';
+    import VConnectWeChatModal from '@/views/back/app/platforms/configure-wechat';
     import VEmptyView from '@/views/common/empty'
     import VAlert from '@/components/alert/alert'
 
@@ -112,6 +188,32 @@
             showEditCommandModal(command) {
                 this.$modal(VEditCommandModal,{
                     command
+                })
+            },
+
+            showConnectTelegramModal() {
+                this.$modal(VConnectTelegramModal, {
+                    bot: this.$page.bot
+                });
+            },
+
+            showConnectSlackModal() {
+                this.$modal(VConnectSlackModal, {
+                    bot: this.$page.bot,
+                    url: this.$page.base_url
+                })
+            },
+
+            showConnectMessengerModal() {
+                this.$modal(VConnectFacebookModal, {
+                    bot: this.$page.bot,
+                    url: this.$page.base_url
+                })
+            },
+
+            showConnectWeChatModal() {
+                this.$modal(VConnectWeChatModal, {
+                    bot: this.$page.bot
                 })
             },
         }

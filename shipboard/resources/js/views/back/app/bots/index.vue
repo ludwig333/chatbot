@@ -65,7 +65,6 @@
 
 <script>
     import VAppDefaultLayout from '@/views/back/app/layouts/default'
-    import VCreateTelegramBotModal from '@/views/back/app/bots/telegram-bot-create'
     import VCreateBotModal from '@/views/back/app/bots/bot-create';
     import VEmptyView from '@/views/common/empty'
     import VPagination from '@/components/pagination'
@@ -88,9 +87,6 @@
         },
 
         methods: {
-            showCreateTelegramBotModal() {
-                this.$modal(VCreateTelegramBotModal);
-            },
             showCreateBotModal() {
                 this.$modal(VCreateBotModal)
             }
